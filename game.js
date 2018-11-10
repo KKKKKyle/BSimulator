@@ -150,3 +150,27 @@ function update()
 					charX,charY,CHAR_WIDTH,CHAR_HEIGHT);
 
 }
+
+//create welcome modal
+function welcomeModal() {
+    var outside = document.getElementById("modal");
+    console.log(outside);
+    var content = document.createElement("div");
+    content.setAttribute('class', 'modal-content');
+    var close = document.createElement("span");
+    close.setAttribute('class', 'close');
+    close.innerHTML = "&times";
+    close.onclick = function() {
+        outside.style.display = "none";
+    }
+    content.appendChild(close);
+
+    var title = document.createElement("h1");
+    title.innerHTML = "Welcome!";
+    console.log(title);
+    content.appendChild(title);
+    outside.appendChild(content);
+    console.log("test");
+
+}
+welcomeModal();
