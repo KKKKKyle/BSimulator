@@ -18,74 +18,61 @@ charImage.ready = false;
 charImage.onload = setAssetReady;
 charImage.src = PATH_CHAR;
 
-function setAssetReady()
-{
-	this.ready = true;
+function setAssetReady() {
+    this.ready = true;
 }
 
 //Display Preloading
-ctx.fillRect(0,0,stage.width,stage.height);
+ctx.fillRect(0, 0, stage.width, stage.height);
 ctx.fillStyle = "#000";
 ctx.fillText(TEXT_PRELOADING, TEXT_PRELOADING_X, TEXT_PRELOADING_Y);
 var preloader = setInterval(preloading, TIME_PER_FRAME);
 
 var gameloop, facing, currX, currY, charX, charY, isMoving;
 
-function preloading()
-{
-	if (charImage.ready)
-	{
-		clearInterval(preloader);
+function preloading() {
+    if (charImage.ready) {
+        clearInterval(preloader);
 
-		//Initialise game
-		facing = "E"; //N = North, E = East, S = South, W = West
-		isMoving = false;
+        //Initialise game
+        facing = "E"; //N = North, E = East, S = South, W = West
+        isMoving = false;
 
-		gameloop = setInterval(update, TIME_PER_FRAME);
-		document.addEventListener("keydown",keyDownHandler, false);
-		document.addEventListener("keyup",keyUpHandler, false);
-	}
+        gameloop = setInterval(update, TIME_PER_FRAME);
+        document.addEventListener("keydown", keyDownHandler, false);
+        document.addEventListener("keyup", keyUpHandler, false);
+    }
 }
 // Testing
 
 //------------
 //Key Handlers
 //------------
-function keyDownHandler(event)
-{
-	var keyPressed = String.fromCharCode(event.keyCode);
+function keyDownHandler(event) {
+    var keyPressed = String.fromCharCode(event.keyCode);
 
-	if (keyPressed == "W")
-	{
-		facing = "N";
-		isMoving = true;
-	}
-	else if (keyPressed == "D")
-	{
-		facing = "E";
-		isMoving = true;
-	}
-	else if (keyPressed == "S")
-	{
-		facing = "S";
-		isMoving = true;
-	}
-	else if (keyPressed == "A")
-	{
-		facing = "W";
-		isMoving = true;
-	}
+    if (keyPressed == "W") {
+        facing = "N";
+        isMoving = true;
+    } else if (keyPressed == "D") {
+        facing = "E";
+        isMoving = true;
+    } else if (keyPressed == "S") {
+        facing = "S";
+        isMoving = true;
+    } else if (keyPressed == "A") {
+        facing = "W";
+        isMoving = true;
+    }
 }
 
-function keyUpHandler(event)
-{
-	var keyPressed = String.fromCharCode(event.keyCode);
+function keyUpHandler(event) {
+    var keyPressed = String.fromCharCode(event.keyCode);
 
-	if ((keyPressed == "W") || (keyPressed == "A") ||
-		(keyPressed == "S") || (keyPressed == "D"))
-	{
-		isMoving = false;
-	}
+    if ((keyPressed == "W") || (keyPressed == "A") ||
+        (keyPressed == "S") || (keyPressed == "D")) {
+        isMoving = false;
+    }
 }
 
 //------------
@@ -97,6 +84,7 @@ charY = CHAR_START_Y;
 currX = IMAGE_START_X;
 currY = IMAGE_START_EAST_Y;
 
+<<<<<<< HEAD
 function update()
 {
 	//Clear Canvas
@@ -149,6 +137,51 @@ function update()
 	//Draw Image
 	ctx.drawImage(charImage,currX,currY,CHAR_WIDTH,CHAR_HEIGHT,
 					charX,charY,CHAR_WIDTH,CHAR_HEIGHT);
+=======
+function update() {
+    //Clear Canvas
+    //ctx.fillStyle = "red";
+    // var background = new Image();
+    // background.src = "https://welovebears.club/wp-content/uploads/2017/11/bears-climb-trees-1-300x300.jpg";
+    //
+    // // Make sure the image is loaded first otherwise nothing will draw.
+    // background.onload = function(){
+    // 	ctx.fillStyle = background;
+    //   //ctx.drawImage(background,0,0);
+    // }
+
+    var img = document.getElementById("bg");
+    var pat = ctx.createPattern(img, "no-repeat");
+
+    ctx.fillStyle = pat;
+
+    ctx.fillRect(0, 0, stage.width, stage.height);
+
+    if (isMoving) {
+        if (facing == "N") {
+            charY -= CHAR_SPEED;
+            currY = IMAGE_START_NORTH_Y;
+        } else if (facing == "E") {
+            charX += CHAR_SPEED;
+            currY = IMAGE_START_EAST_Y;
+        } else if (facing == "S") {
+            charY += CHAR_SPEED;
+            currY = IMAGE_START_SOUTH_Y;
+        } else if (facing == "W") {
+            charX -= CHAR_SPEED;
+            currY = IMAGE_START_WEST_Y;
+        }
+
+        currX += CHAR_WIDTH;
+
+        if (currX >= SPRITE_WIDTH)
+            currX = 0;
+    }
+
+    //Draw Image
+    ctx.drawImage(charImage, currX, currY, CHAR_WIDTH, CHAR_HEIGHT,
+        charX, charY, CHAR_WIDTH, CHAR_HEIGHT);
+>>>>>>> 394ab6667e9556ede8c5efc43aa0ef94bf3b2764
 
 }
 
@@ -167,12 +200,18 @@ function welcomeModal() {
     content.appendChild(close);
 
     var title = document.createElement("h1");
-    title.innerHTML = "Welcome!";
+    title.innerHTML = "Congrats to";
     console.log(title);
     content.appendChild(title);
     outside.appendChild(content);
     console.log("test");
 
 }
+<<<<<<< HEAD
 function test(){}
+=======
+
+// create soar modal
+
+>>>>>>> 394ab6667e9556ede8c5efc43aa0ef94bf3b2764
 welcomeModal();
