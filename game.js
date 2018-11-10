@@ -46,6 +46,7 @@ function preloading()
 		document.addEventListener("keyup",keyUpHandler, false);
 	}
 }
+// Testing
 
 //------------
 //Key Handlers
@@ -118,7 +119,7 @@ function update()
 
 	if (isMoving)
 	{
-		if (facing == "N")
+		if (facing == "N" || asdf )
 		{
 			charY -= CHAR_SPEED;
 			currY = IMAGE_START_NORTH_Y;
@@ -173,4 +174,5 @@ function welcomeModal() {
     console.log("test");
 
 }
+function test(){}
 welcomeModal();
