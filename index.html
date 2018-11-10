@@ -1,31 +1,30 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
 <head>
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <title>Badger Simulator</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Gaminglogy Game Set Up</title>
 </head>
-
 <body>
-    <canvas id="gameCanvas">
-        Please upgrade your browser to support HTML5.<br/> 
+	<img src="img/campus_bg.png" style="display: none;" id="bg" width="100" height="100">
+	<canvas id="gameCanvas">
+        Please upgrade your browser to support HTML5.<br/>
         One recommendation is to install the latest Chrome or Firefox.
     </canvas>
-    <!-- Trigger/Open The Modal -->
-    <button id="myBtn">Open Modal</button>
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <iframe src="https://www.google.com/maps/embed?pb=!4v1541813229905!6m8!1m7!1sCAoSLEFGMVFpcE9HbTM0NGUxcmlUcUFOVktNZXlyTFpiVnJXZ3JrcFA4WWFpNjk4!2m2!1d43.0738511!2d-89.40172849999999!3f223.65310667960375!4f-0.7391059139996088!5f0.7820865974627469" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-        </div>
-    </div>
-    <script type="text/javascript" src="js/game.js"></script>
-    <script type="text/javascript" src="js/modal.js"></script>
+    <script type="text/javascript" src="constants.js"></script>
+	<script type="text/javascript" src="game.js"></script>
 
+	<div onclick="showCoords(event)"><p id="demo"></p></div>
+
+	<script>
+	function showCoords(event) {
+    var cX = event.clientX;
+    var sX = event.screenX;
+    var cY = event.clientY;
+    var sY = event.screenY;
+    var coords1 = "client - X: " + cX + ", Y coords: " + cY;
+    var coords2 = "screen - X: " + sX + ", Y coords: " + sY;
+    document.getElementById("demo").innerHTML = coords1 + "<br>" + coords2;
+}
+	</script>
 </body>
-
 </html>
