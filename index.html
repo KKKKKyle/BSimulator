@@ -1,23 +1,31 @@
 <!doctype html>
-<!--[if lt IE 7 ]><html id="ie6" class="ie ie-old ie-super-old"><![endif]-->
-<!--[if IE 7 ]>   <html id="ie7" class="ie ie-old ie-super-old"><![endif]-->
-<!--[if IE 8 ]>   <html id="ie8" class="ie ie-old ie-super-old"><![endif]-->
-<!--[if IE 9 ]>   <html id="ie9" class="ie ie-old"><![endif]-->
-<!--[if gt IE 9]><!--><html><!--<![endif]-->
+<html>
 <head>
-
     <!-- Meta -->
     <meta charset="utf-8">
     <title>Badger Simulator</title>
-    <script type="text/javascript" src="game.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
-<body>
-    
-    <canvas id="main">
 
+<body>
+    <canvas id="gameCanvas">
+        Please upgrade your browser to support HTML5.<br/> 
+        One recommendation is to install the latest Chrome or Firefox.
     </canvas>
-	<iframe src="https://www.google.com/maps/embed?pb=!4v1541813229905!6m8!1m7!1sCAoSLEFGMVFpcE9HbTM0NGUxcmlUcUFOVktNZXlyTFpiVnJXZ3JrcFA4WWFpNjk4!2m2!1d43.0738511!2d-89.40172849999999!3f223.65310667960375!4f-0.7391059139996088!5f0.7820865974627469" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Open Modal</button>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe src="https://www.google.com/maps/embed?pb=!4v1541813229905!6m8!1m7!1sCAoSLEFGMVFpcE9HbTM0NGUxcmlUcUFOVktNZXlyTFpiVnJXZ3JrcFA4WWFpNjk4!2m2!1d43.0738511!2d-89.40172849999999!3f223.65310667960375!4f-0.7391059139996088!5f0.7820865974627469" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript" src="js/modal.js"></script>
 
 </body>
+
 </html>
