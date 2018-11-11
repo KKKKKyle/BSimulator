@@ -13,7 +13,8 @@ function diningModal() {
     close.innerHTML = "&times";
 
     close.onclick = function() {
-        outside.style.display = "none";
+      outside.removeChild(outside.firstChild);
+      CHAR_SPEED = 5;
     }
 
     content.appendChild(close);
@@ -23,8 +24,7 @@ function diningModal() {
     header.setAttribute('class', 'modal-header');
     //text
     var title = document.createElement("h1");
-    title.innerHTML = "IT'S LUNCH TIME!";
-
+    title.innerHTML = "IT'S LUNCH TIME!"
     header.appendChild(title);
     content.appendChild(header);
 
@@ -34,10 +34,7 @@ function diningModal() {
     //button and text
     var chooseButton = document.createElement("button");
     chooseButton.setAttribute('class', 'modal-button');
-    var t = document.createElement("span");
-    t.innerHTML="Dining Hall";
-    t.setAttribute('class','text');
-
+    var t = document.createTextNode("Dining Hall");
     chooseButton.appendChild(t);
     footer.appendChild(chooseButton);
     content.appendChild(footer);
@@ -60,7 +57,10 @@ function diningModal() {
         close.innerHTML = "&times";
 
         close.onclick = function() {
-            outside.style.display = "none";
+          while(outside.firstChild){
+            outside.removeChild(outside.firstChild);
+            CHAR_SPEED = 5;
+          }
         }
         content.appendChild(close);
 
@@ -124,4 +124,4 @@ function diningModal() {
 
 
 }
-diningModal();
+//diningModal();
