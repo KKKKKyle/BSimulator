@@ -173,3 +173,15 @@
 .labels{
     position: center;
 }
+
+#taskList{
+    z-index: 10; /* Sit on top */
+    display: block; /* Hidden by default */
+    position: absolute; /* Stay in place */
+    left: 85%;
+    top: 2%;
+    width: 15%; /* Full width */
+    height: 15%; /* Full height */
+    background-color: yellow;
+    padding: 5px;
+}

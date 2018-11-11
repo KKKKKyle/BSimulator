@@ -47,7 +47,7 @@ function iceCreamModal() {
 
   var imageOne = document.createElement("IMG");
   imageOne.setAttribute("class", "image");
-  imageOne.setAttribute("src", "img/dorm.jpg");
+  imageOne.setAttribute("src", "img/ice-cream.jpg");
 
   // var imageTwo = document.createElement("IMG");
   // imageTwo.setAttribute("class", "image");

@@ -33,8 +33,8 @@ for (i = 1107; i < 1133; i++) {
 }
 
 //Rheta's Market
-for (i = 1067; i < 1095; i++) {
-  for (j = 422; j < 442; j++) {
+for (i = 1000; i < 1200; i++) {
+  for (j = 402; j < 462; j++) {
     MAP.set(i.toString() + " " + j.toString(), "Rhetas");
   }
 }
@@ -66,3 +66,43 @@ for(i=1436;i<1483;i++) {
 		MAP.set(i.toString()+" "+j.toString(),"Ians");
 	}
 }
+
+// waters
+for(i=740;i<850;i++) {
+	for(j=180;j<230;j++) {
+		MAP.set(i.toString()+" "+j.toString(),"Waters");
+	}
+}
+
+//Bascom Hall
+for(i = 950; i<1050; i++){
+	for(j = 310; j < 350; j++){
+		MAP.set(i.toString()+" "+j.toString(),"Bascom Hall");
+	}
+}
+
+// education science
+for(i = 960; i<1036; i++){
+	for(j = 585; j < 610; j++){
+		MAP.set(i.toString()+" "+j.toString(),"Edu Sci");
+	}
+}
+var Chadbourne = {x:1090, y:350};
+var Sellery = {x: 1150, y:514};
+var Kronshage = {x:328, y:80};
+var Witte = {x:1056, y:529};
+var Leopold = {x:353, y:80};
+var Dejope = {x: 139, y:57};
+var Tripp = {x:527, y:28};
+var Liz_Waters = {x:752, y:124};
+var Adams = {x:464, y:35};
+var Cole = {x: 291, y:81};
+var Sullivan = {x:277, y:54};
+var Ogg = {x:1155, y:613};
+var Slichter = {x:459, y:94};
+var Phillips = {x: 128, y:-12};
+var Bradley = {x:222, y:34};
+var Smith = {x:1135, y:749};
+var Barnard = {x:1021, y:359};
+var Merit = {x: 1097, y:607};
+var Davis = {x:1064, y:505};

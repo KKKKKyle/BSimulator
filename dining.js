@@ -84,56 +84,29 @@ function diningModal() {
     header.appendChild(title);
     content.appendChild(header);
 
+    var subtitle = document.createElement("h2");
+    subtitle.innerHTML = "These are the only choices you have for lunch 'on campus'";
     //second body content
     body = document.createElement("div");
     body.setAttribute('class', 'modal-body');
+    var titleone = document.createElement("h3");
+    titleone.innerHTML = "Rheta's Market";
     var imageOne = document.createElement("IMG");
     imageOne.setAttribute("class", "image");
-    imageOne.setAttribute("src", "img/dorm.jpg");
+    imageOne.setAttribute("src", "img/rhetas.png");
 
+    var titletwo = document.createElement("h3");
+    titletwo.innerHTML = "Liz Water's Market";
     var imageTwo = document.createElement("IMG");
     imageTwo.setAttribute("class", "image");
-    imageTwo.setAttribute("src", "img/dorm.jpg");
-
-
-    imageOne.onclick = function() {
-      var inside = document.createElement("div");
-      inside.setAttribute("class", "modal");
-      var elements = outside.childNodes;
-      while (outside.firstChild) {
-        outside.removeChild(outside.firstChild);
-      }
-      content = document.createElement("div");
-      content.setAttribute('class', 'modal-content');
-      outside.style.display = "block";
-      //outside.appendChild(content);
-      inside.appendChild(content);
-      outside.appendChild(inside);
-    }
-
-    imageTwo.onclick = function() {
-      var inside = document.createElement("div");
-      inside.setAttribute("class", "modal");
-      var elements = outside.childNodes;
-      while (outside.firstChild) {
-        outside.removeChild(outside.firstChild);
-      }
-      content = document.createElement("div");
-      content.setAttribute('class', 'modal-content');
-      outside.style.display = "block";
-      //outside.appendChild(content);
-      inside.appendChild(content);
-      outside.appendChild(inside);
-    }
-
+    imageTwo.setAttribute("src", "img/waters.png");
+    body.appendChild(subtitle);
+    body.appendChild(titleone);
     body.appendChild(imageOne);
+    body.appendChild(titletwo);
     body.appendChild(imageTwo);
     content.appendChild(body);
 
-    //buttom content
-    footer = document.createElement("div");
-    footer.setAttribute('class', 'modal-footer');
-    content.appendChild(footer);
 
     inside.appendChild(content);
     outside.appendChild(inside);

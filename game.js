@@ -24,6 +24,8 @@ var dorm;
 var selectedDorm = false;
 var arriveColi = false;
 var soarBegin = false;
+var finishSelecting = false;
+var finishLunch = false;
 
 function setAssetReady() {
     this.ready = true;
@@ -91,6 +93,10 @@ currY = IMAGE_START_EAST_Y;
 // flags
 var appear = false;
 var dining = false;
+var bascom = false;
+var finishBascom = false;
+var finishEdu = false;
+var dining2 = false;
 
 function update() {
     //Clear Canvas
@@ -106,6 +112,8 @@ function update() {
 
     console.log(selectedDorm);
     if (selectedDorm == true) {
+
+        //clean modal
         var outside = document.getElementById("modal");
         while (outside.firstChild) {
             outside.removeChild(outside.firstChild);
@@ -158,21 +166,73 @@ function update() {
                 } else if (MAP.get(cd) == "College Library") {
                     if (soarBegin == true) {
                         soarBegin = false;
+                        CHAR_SPEED = 0;
                         soarModal2();
                     } else {
                         CHAR_SPEED = 5;
                     }
-                } else if (MAP.get(cd) == "Rhetas") {
-                    if (!dining) {
-                        diningModal();
-                        dining = true;
+                } else if (MAP.get(cd) == "Rhetas" || MAP.get(cd) == "Waters") {
+                    if (bascom == true) {
+                        if (!dining) {
+                            if (MAP.get(cd) == "Rhetas") {
+                                CHAR_SPEED = 0;
+                                rhetasModal();
+                            } else if (MAP.get(cd) == "Waters") {
+                                CHAR_SPEED = 0;
+                                watersModal();
+                            }
+                            dining = true;
+                        } else {
+                            CHAR_SPEED = 5;
+                        }
                     } else {
                         CHAR_SPEED = 5;
                     }
+
                 } else if (MAP.get(cd) == "Lake") {
+                    CHAR_SPEED = 0;
                     iceCreamModal();
                 } else if (MAP.get(cd) == "QQExp" || MAP.get(cd) == "Ians") {
-                    dinnerModal();
+                    if (finishEdu == true) {
+                        if (!dining2) {
+                            if (MAP.get(cd) == "Ians") {
+                                CHAR_SPEED = 0;
+                                ianModal();
+                            } else if (MAP.get(cd) == "QQExp") {
+                                CHAR_SPEED = 0;
+                                qqModal();
+                            }
+                            dining2 = true;
+                        } else {
+                            CHAR_SPEED = 5;
+                        }
+                    } else {
+                        CHAR_SPEED = 5;
+                    }
+                } else if (MAP.get(cd) == "Bascom Hall") {
+                    if (finishSelecting == true && finishBascom == false) {
+                        finishBascom = true;
+                        CHAR_SPEED = 0;
+                        bascomModal();
+                        CHAR_SPEED = 5;
+                        var list = document.getElementById("taskList");
+                        while (list.firstChild) {
+                            list.removeChild(list.firstChild);
+                        }
+                        var task = document.createElement("p");
+                        task.innerHTML = "TASK: ";
+                        list.appendChild(task);
+                    } else {
+                        CHAR_SPEED = 5;
+                    }
+                } else if (MAP.get(cd) == "Edu Sci") {
+                    if (finishLunch == true && finishEdu == false) {
+                        finishEdu = true;
+                        CHAR_SPEED = 0;
+                        educationModal();
+                    } else {
+                        CHAR_SPEED = 5;
+                    }
                 }
                 appear = true;
             }
@@ -199,7 +259,8 @@ function tableCreate() {
     var label1 = document.createElement("label");
     var input1 = document.createElement("input");
     input1.setAttribute("type", "checkbox");
-    input1.id = "course1";
+    input1.setAttribute("checked", "checked");
+    input1.disabled = true;
     label1.innerHTML = "CHEESE 101: Lactose Intolerant Sad React Only";
     label1.appendChild(input1);
     tr1.appendChild(label1);
@@ -211,7 +272,8 @@ function tableCreate() {
     var label2 = document.createElement("label");
     var input2 = document.createElement("input");
     input2.setAttribute("type", "checkbox");
-    input2.id = "course2";
+    input2.setAttribute("checked", "checked");
+    input2.disabled = true;
     label2.innerHTML = "PARTY 101: It's all about ALC";
     label2.appendChild(input2);
     tr2.appendChild(label2);
@@ -223,7 +285,8 @@ function tableCreate() {
     var label3 = document.createElement("label");
     var input3 = document.createElement("input");
     input3.setAttribute("type", "checkbox");
-    input3.id = "course3";
+    input3.setAttribute("checked", "checked");
+    input3.disabled = true;
     label3.innerHTML = "POLI SCI 100: VOTE";
     label3.appendChild(input3);
     tr3.appendChild(label3);
@@ -235,7 +298,8 @@ function tableCreate() {
     var label4 = document.createElement("label");
     var input4 = document.createElement("input");
     input4.setAttribute("type", "checkbox");
-    input4.id = "course4";
+    input4.setAttribute("checked", "checked");
+    input4.disabled = true;
     label4.innerHTML = "COMP SCI 100: In any case, no bugs pls.";
     label4.appendChild(input4);
     tr4.appendChild(label4);
@@ -254,106 +318,73 @@ var selectDorm = function(event, img) {
     var coords = "offset - X: " + cX + ", Y coords: " + cY;
     console.log(coords);
     if (cX >= 0.065 && cY >= 0.06 && cX <= 0.22 && cY <= 0.12) {
-        dorm = "Sellery";
-        charX = -30 + 1180;
-        charY = -90 + 604;
+        dorm = Sellery;
         selectedDorm = true;
         console.log(dorm);
         console.log(selectedDorm);
         // also add the coordinates here!!!
     } else if (cX >= 0.44 && cY >= 0.104 && cX <= 0.72 && cY <= 0.148) {
-        dorm = "Chadbourne";
-        charX = -30 + 1120;
-        charY = -90 + 440;
+        dorm = Chadbourne;
         selectedDorm = true;
     } else if (cX >= 0.113 && cY >= 0.2 && cX <= 0.35 && cY <= 0.25) {
-        dorm = "Kronshage";
-        charX = -30 + 358;
-        charY = -90 + 170;
+        dorm = Kronshage;
         selectedDorm = true;
     } else if (cX >= 0.62 && cY >= 0.22 && cX <= 0.74 && cY <= 0.27) {
-        dorm = "Witte";
-        charX = -30 + 1356;
-        charY = -90 + 619;
+        dorm = Witte;
         selectedDorm = true;
     } else if (cX >= 0.21 && cY >= 0.26 && cX <= 0.385 && cY <= 0.325) {
-        dorm = "Leopold";
-        charX = -30 + 383;
-        charY = -90 + 170;
+        dorm = Leopold;
         selectedDorm = true;
     } else if (cX >= 0.11 && cY >= 0.33 && cX <= 0.265 && cY <= 0.385) {
-        dorm = "Dejope";
-        charX = -30 + 169;
-        charY = -90 + 147;
+        dorm = Dejope;
         selectedDorm = true;
     } else if (cX >= 0.26 && cY >= 0.39 && cX <= 0.375 && cY <= 0.439) {
-        dorm = "Tripp";
-        charX = -30 + 557;
-        charY = -90 + 118;
+        dorm = Tripp;
         selectedDorm = true;
     } else if (cX >= 0.48 && cY >= 0.32 && cX <= 0.715 && cY <= 0.368) {
-        dorm = "Liz Waters";
-        charX = -30 + 782;
-        charY = -90 + 214;
+        dorm = Liz_Waters;
         selectedDorm = true;
     } else if (cX >= 0.44 && cY >= 0.434 && cX <= 0.595 && cY <= 0.48) {
-        dorm = "Adams";
-        charX = -30 + 494;
-        charY = -90 + 125;
+        dorm = Adams;
         selectedDorm = true;
     } else if (cX >= 0.65 && cY >= 0.455 && cX <= 0.76 && cY <= 0.51) {
-        dorm = "Cole";
-        charX = -30 + 321;
-        charY = -90 + 171;
+        dorm = Cole;
         selectedDorm = true;
     } else if (cX >= 0.05 && cY >= 0.44 && cX <= 0.23 && cY <= 0.49) {
-        dorm = "Sullivan";
-        charX = -30 + 307;
-        charY = -90 + 144;
+        dorm = Sullivan;
         selectedDorm = true;
     } else if (cX >= 0.40 && cY >= 0.54 && cX <= 0.489 && cY <= 0.588) {
-        dorm = "Ogg";
-        charX = -30 + 1185;
-        charY = -90 + 703;
+        dorm = Ogg;
         selectedDorm = true;
     } else if (cX >= 0.064 && cY >= 0.55 && cX <= 0.22 && cY <= 0.59) {
-        dorm = "Slichter";
-        charX = -30 + 489;
-        charY = -90 + 184;
+        dorm = Slichter;
         selectedDorm = true;
     } else if (cX >= 0.24 && cY >= 0.64 && cX <= 0.39 && cY <= 0.70) {
-        dorm = "Phillips";
-        charX = -30 + 158;
-        charY = -90 + 78;
+        dorm = Phillips;
         selectedDorm = true;
     } else if (cX >= 0.58 && cY >= 0.61 && cX <= 0.75 && cY <= 0.67) {
-        dorm = "Bradley";
-        charX = -30 + 252;
-        charY = -90 + 124;
+        dorm = Bradley;
         selectedDorm = true;
     } else if (cX >= 0.06 && cY >= 0.72 && cX <= 0.19 && cY <= 0.775) {
-        dorm = "Smith";
-        charX = -30 + 1165;
-        charY = -90 + 839;
+        dorm = Smith;
         selectedDorm = true;
     } else if (cX >= 0.55 && cY >= 0.75 && cX <= 0.73 && cY <= 0.80) {
-        dorm = "Barnard";
-        charX = -30 + 1051;
-        charY = -90 + 449;
+        dorm = Barnard;
         selectedDorm = true;
     } else if (cX >= 0.12 && cY >= 0.90 && cX <= 0.23 && cY <= 0.955) {
-        dorm = "Merit";
-        charX = -30 + 1107;
-        charY = -90 + 697;
+        dorm = Merit;
         selectedDorm = true;
     } else if (cX >= 0.61 && cY >= 0.86 && cX <= 0.74 && cY <= 0.91) {
-        dorm = "Davis";
-        charX = -30 + 1094;
-        charY = -90 + 595;
+        dorm = Davis;
         selectedDorm = true;
     } else if (cX >= 0.33 && cY >= 0.95 && cX <= 0.66 && cY <= 1) {
         alert("You startled Tunnel Bob. Choose again lol.");
     }
+    if (selectedDorm) {
+        charX = dorm.x;
+        charY = dorm.y;
+    }
+
 }
 
 //create welcome modal
@@ -434,9 +465,9 @@ function dormModal2() {
     var img = document.createElement("img");
     img.src = "img/dorm2.png";
     img.setAttribute('class', 'image');
+    img.onclick = function() { selectDorm(event, img); };
     var credit = document.createElement("h5");
     credit.innerHTML = "Cr. to Colton Wickland from Milk-Chugging Teens";
-    img.onclick = function() { selectDorm(event, img); };
     content.appendChild(subtitle);
     content.appendChild(img);
     content.appendChild(credit);
@@ -460,13 +491,19 @@ function soarModal() {
             outside.removeChild(outside.firstChild);
         }
         CHAR_SPEED = 5;
+
+        // add new task
+        var list = document.getElementById("taskList");
+        var task = document.createElement("p");
+        task.innerHTML = "Go to College Library to join SOAR!";
+        list.appendChild(task);
     }
     content.appendChild(close);
     var title = document.createElement("h1");
     title.innerHTML = "Now it's SOAR! You need to go to the College Libaray to choose your courses!";
     content.appendChild(title);
     var subtitle = document.createElement("h5");
-    subtitle.innerHTML = "Cr. to Alyssa Stammerjohan from Milk-Chugging Teens";
+    subtitle.innerHTML = "Cr. to Alyssa Stammerjohan from Milk-Chugging Teans";
     var img = document.createElement("img");
     img.src = "img/soar.png";
     img.setAttribute('class', 'image');
@@ -492,6 +529,7 @@ function soarModal2() {
             outside.removeChild(outside.firstChild);
         }
         CHAR_SPEED = 5;
+        goToClass1();
     }
     content.appendChild(close);
     var title = document.createElement("h1");
@@ -503,10 +541,30 @@ function soarModal2() {
     content.appendChild(table);
     inside.appendChild(content);
     outside.appendChild(inside);
+    // clean task
+    var list = document.getElementById("taskList");
+    while (list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+    var task = document.createElement("p");
+    task.innerHTML = "TASK: ";
+    list.appendChild(task);
+    finishSelecting = true;
 }
 
-//create party model
-function partyModal() {
+// go to school
+function goToClass1() {
+    charX = dorm.x;
+    charY = dorm.y;
+    var task = document.createElement("p");
+    task.innerHTML = "Go to Bascom Hall for CHEESE 101.";
+    console.log(document.getElementById("taskList"));
+    document.getElementById("taskList").appendChild(task);
+}
+
+// bascom hall
+function bascomModal() {
+    bascom = true;
     var outside = document.getElementById("modal");
     var inside = document.createElement("div");
     inside.setAttribute("class", "modal");
@@ -518,12 +576,265 @@ function partyModal() {
     close.onclick = function() {
         while (outside.firstChild) {
             outside.removeChild(outside.firstChild);
-          }
-        CHAR_SPEED = 5;
-      }
+        }
+        var list = document.getElementById("taskList");
+        while (list.firstChild) {
+            list.removeChild(list.firstChild);
+        }
+        var task = document.createElement("p");
+        task.innerHTML = "TASK: Go to Rheta's or Liz's Market to have lunch.";
+        list.appendChild(task);
+        diningModal();
+    }
     content.appendChild(close);
     var title = document.createElement("h1");
-    title.innerHTML = "No matter Game Day or weekend, it's party time!";
+    title.innerHTML = "Climbing Bascom Hill";
+    var frame = document.createElement("iframe");
+    frame.src = "https://www.google.com/maps/embed?pb=!4v1541945242488!6m8!1m7!1sCAoSLEFGMVFpcFBnT3ZQZTl1Mjd0Z2RRVTlYdDBKdDhiYVI3VHg2VmY5UXdLN1d3!2m2!1d43.0753757!2d-89.4042128!3f241.0742641660981!4f-11.620922914975196!5f0.7820865974627469";
+    frame.width = 600;
+    frame.height = 450;
+    content.appendChild(title);
+    content.appendChild(frame);
+    inside.appendChild(content);
+    outside.appendChild(inside);
+}
+
+// rhetas
+function rhetasModal() {
+    var outside = document.getElementById("modal");
+    var inside = document.createElement("div");
+    inside.setAttribute("class", "modal");
+    var content = document.createElement("div");
+    content.setAttribute('class', 'modal-content');
+    var close = document.createElement("span");
+    close.setAttribute('class', 'close');
+    close.innerHTML = "&times";
+    close.onclick = function() {
+        while (outside.firstChild) {
+            outside.removeChild(outside.firstChild);
+        }
+        goToClass2();
+    }
+    content.appendChild(close);
+    var title = document.createElement("h1");
+    title.innerHTML = "Rheta's Market";
+    var frame = document.createElement("iframe");
+    frame.src = "https://www.google.com/maps/embed?pb=!4v1541948968387!6m8!1m7!1sCAoSLEFGMVFpcE9HbTM0NGUxcmlUcUFOVktNZXlyTFpiVnJXZ3JrcFA4WWFpNjk4!2m2!1d43.0738511!2d-89.40172849999999!3f20.071811335170274!4f0!5f0.7820865974627469";
+    frame.width = 600;
+    frame.height = 450;
+    content.appendChild(title);
+    content.appendChild(frame);
+    inside.appendChild(content);
+    outside.appendChild(inside);
+
+    var list = document.getElementById("taskList");
+    while (list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+    var task = document.createElement("p");
+    task.innerHTML = "TASK: ";
+    list.appendChild(task);
+    CHAR_SPEED = 5;
+    finishLunch = true;
+}
+
+function watersModal() {
+    var outside = document.getElementById("modal");
+    var inside = document.createElement("div");
+    inside.setAttribute("class", "modal");
+    var content = document.createElement("div");
+    content.setAttribute('class', 'modal-content');
+    var close = document.createElement("span");
+    close.setAttribute('class', 'close');
+    close.innerHTML = "&times";
+    close.onclick = function() {
+        while (outside.firstChild) {
+            outside.removeChild(outside.firstChild);
+        }
+        goToClass2();
+    }
+    content.appendChild(close);
+    var title = document.createElement("h1");
+    title.innerHTML = "Liz Water's Market";
+    var frame = document.createElement("iframe");
+    frame.src = "https://www.google.com/maps/embed?pb=!4v1541953055175!6m8!1m7!1sCAoSLEFGMVFpcE9OWE93R0NSS0tmdmZPZ01UbVZXRWlLM1UxTzVtNVdOMnZ1Nnd5!2m2!1d43.0768298!2d-89.4069008!3f289.7375685283002!4f-14.038300207400496!5f0.7820865974627469";
+    frame.width = 600;
+    frame.height = 450;
+    content.appendChild(title);
+    content.appendChild(frame);
+    inside.appendChild(content);
+    outside.appendChild(inside);
+
+    var list = document.getElementById("taskList");
+    while (list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+    var task = document.createElement("p");
+    task.innerHTML = "TASK: ";
+    list.appendChild(task);
+    CHAR_SPEED = 5;
+    finishLunch = true;
+}
+
+// go to class 2
+function goToClass2() {
+    var task = document.createElement("p");
+    task.innerHTML = "Go to Education Science Building for COMP SCI 100.";
+    console.log(document.getElementById("taskList"));
+    document.getElementById("taskList").appendChild(task);
+}
+
+// Education
+function educationModal() {
+    var outside = document.getElementById("modal");
+    var inside = document.createElement("div");
+    inside.setAttribute("class", "modal");
+    var content = document.createElement("div");
+    content.setAttribute('class', 'modal-content');
+    var close = document.createElement("span");
+    close.setAttribute('class', 'close');
+    close.innerHTML = "&times";
+    close.onclick = function() {
+        while (outside.firstChild) {
+            outside.removeChild(outside.firstChild);
+        }
+        dinnerModal();
+        // update task
+        var list = document.getElementById("taskList");
+        while (list.firstChild) {
+            list.removeChild(list.firstChild);
+        }
+        var task = document.createElement("p");
+        task.innerHTML = "TASK: Find QQ or Ian's to have dinner!";
+        list.appendChild(task);
+
+
+    }
+    content.appendChild(close);
+    var title = document.createElement("h1");
+    title.innerHTML = "Education Science Building";
+    var frame = document.createElement("iframe");
+    frame.src = "https://www.google.com/maps/embed?pb=!4v1541950334449!6m8!1m7!1sCAoSLEFGMVFpcE02YXh3TFZOMlJYdjNTWjRhSHo2M05PMnRjcklSRE44eHA1ZXRY!2m2!1d43.0718834!2d-89.4034203!3f9.237327560526602!4f-9.633180609814673!5f0.7820865974627469";
+    frame.width = 600;
+    frame.height = 450;
+    content.appendChild(title);
+    content.appendChild(frame);
+    inside.appendChild(content);
+    outside.appendChild(inside);
+
+    var list = document.getElementById("taskList");
+    while (list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+    var task = document.createElement("p");
+    task.innerHTML = "TASK: ";
+    list.appendChild(task);
+    CHAR_SPEED = 5;
+}
+
+// ian
+function ianModal() {
+    var outside = document.getElementById("modal");
+    var inside = document.createElement("div");
+    inside.setAttribute("class", "modal");
+    var content = document.createElement("div");
+    content.setAttribute('class', 'modal-content');
+    var close = document.createElement("span");
+    close.setAttribute('class', 'close');
+    close.innerHTML = "&times";
+    close.onclick = function() {
+        while (outside.firstChild) {
+            outside.removeChild(outside.firstChild);
+        }
+        partyModal();
+    }
+    content.appendChild(close);
+    var title = document.createElement("h1");
+    title.innerHTML = "Ian's Pizza";
+    var frame = document.createElement("iframe");
+    frame.src = "https://www.google.com/maps/embed?pb=!4v1541948968387!6m8!1m7!1sCAoSLEFGMVFpcE9HbTM0NGUxcmlUcUFOVktNZXlyTFpiVnJXZ3JrcFA4WWFpNjk4!2m2!1d43.0738511!2d-89.40172849999999!3f20.071811335170274!4f0!5f0.7820865974627469";
+    frame.width = 600;
+    frame.height = 450;
+    content.appendChild(title);
+    content.appendChild(frame);
+    inside.appendChild(content);
+    outside.appendChild(inside);
+
+    var list = document.getElementById("taskList");
+    while (list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+    var task = document.createElement("p");
+    task.innerHTML = "TASK: ";
+    list.appendChild(task);
+    CHAR_SPEED = 5;
+    finishLunch = true;
+}
+
+//qq
+function qqModal() {
+    var outside = document.getElementById("modal");
+    var inside = document.createElement("div");
+    inside.setAttribute("class", "modal");
+    var content = document.createElement("div");
+    content.setAttribute('class', 'modal-content');
+    var close = document.createElement("span");
+    close.setAttribute('class', 'close');
+    close.innerHTML = "&times";
+    close.onclick = function() {
+        while (outside.firstChild) {
+            outside.removeChild(outside.firstChild);
+        }
+        partyModal();
+    }
+    content.appendChild(close);
+    var title = document.createElement("h1");
+    title.innerHTML = "QQ Express";
+    var frame = document.createElement("iframe");
+    frame.src = "https://www.google.com/maps/embed?pb=!4v1541955805767!6m8!1m7!1sCAoSLEFGMVFpcFBDU2R0TFB1MEN1azYySFRkdEREaklCaTJQcE5DZlZDTHdBQ0h1!2m2!1d43.0733747!2d-89.4093363!3f35.84241597345263!4f-3.407392806931199!5f0.7820865974627469";
+    frame.width = 600;
+    frame.height = 450;
+    content.appendChild(title);
+    content.appendChild(frame);
+    inside.appendChild(content);
+    outside.appendChild(inside);
+
+    var list = document.getElementById("taskList");
+    while (list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+    var task = document.createElement("p");
+    task.innerHTML = "TASK: ";
+    list.appendChild(task);
+    CHAR_SPEED = 5;
+    finishLunch = true;
+}
+
+//create party model
+function partyModal() {
+    console.log("test");
+    var outside = document.getElementById("modal");
+    var inside = document.createElement("div");
+    inside.setAttribute("class", "modal");
+    var content = document.createElement("div");
+    content.setAttribute('class', 'modal-content');
+    var close = document.createElement("span");
+    close.setAttribute('class', 'close');
+    close.innerHTML = "&times";
+    close.onclick = function() {
+        while (outside.firstChild) {
+            outside.removeChild(outside.firstChild);
+        }
+        var list = document.getElementById("taskList");
+        var task = document.createElement("p");
+        task.innerHTML = "TASK: Underdevelopment. Feel free to explore the map! ";
+        list.appendChild(task);
+        CHAR_SPEED = 5;
+        finishLunch = true;
+    }
+    content.appendChild(close);
+    var title = document.createElement("h1");
+    title.innerHTML = "No matter Game Day or Thursdays, it's party time!";
     var activity = document.createElement("h3");
     activity.innerHTML = "Activitiy: <del>Beer</del>Water Pong";
     var img = document.createElement("img");
@@ -535,7 +846,7 @@ function partyModal() {
     credit.innerHTML = "Cr. to Jacob Kenyon from Milk-Chugging Teens";
     content.appendChild(title);
     content.appendChild(activity);
-    content.appendChild(image);
+    content.appendChild(img);
     content.appendChild(subtitle);
     content.appendChild(credit);
     inside.appendChild(content);
