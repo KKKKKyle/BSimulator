@@ -13,21 +13,56 @@
 }
 
 /* Modal Content/Box */
-.modal-content {
+.modal-content {   
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid #FFFFFF;
     width: 80%; /* Could be more or less, depending on screen size */
-}
-
-#myModal-content{    
-    position: relative;
+     position: relative;
      -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
 }
+
+
+.modal-button {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #f1f1f1;
+    color: black;
+    font-size: 30px;
+    padding: 16px 30px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+
+}
+
+.modal-button:hover{
+    background-color: black;
+    color: white;
+}
+
+
+.image{
+   width:304px;
+   height:228px;
+   margin:10px;
+}
+
+.image2{
+    width:400;
+    height: 300px;
+    cursor:zoom-in
+}
+
 /* Add Animation */
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 
@@ -57,8 +92,9 @@
 
 
 .modal-header {
+    text-align: center;
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #F50C0C;
     color: white;
 }
 
@@ -66,6 +102,8 @@
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #660000;
     color: white;
 }
+
+

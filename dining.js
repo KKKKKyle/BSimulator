@@ -4,7 +4,7 @@ function diningModal() {
 
     var content = document.createElement("div");
     content.setAttribute('class', 'modal-content');
-    content.setAttribute('id', 'myModal-content');
+    
 
     //close
     var close = document.createElement("span");
@@ -32,6 +32,7 @@ function diningModal() {
     footer.setAttribute('class', 'modal-footer');
     //button and text
     var chooseButton = document.createElement("button");
+    chooseButton.setAttribute('class', 'modal-button');
     var t = document.createTextNode("Dining Hall");
     chooseButton.appendChild(t);
     footer.appendChild(chooseButton);
@@ -73,16 +74,38 @@ function diningModal() {
         body = document.createElement("div");
         body.setAttribute('class', 'modal-body');
         var imageOne = document.createElement("IMG");
+        imageOne.setAttribute("class", "image");
         imageOne.setAttribute("src", "img/dorm.jpg");
-        imageOne.setAttribute("width", "304");
-        imageOne.setAttribute("height", "228");
-        imageOne.setAttribute("alt", "dorm");
 
-         var imageTwo = document.createElement("IMG");
+        var imageTwo = document.createElement("IMG");
+        imageTwo.setAttribute("class", "image");
         imageTwo.setAttribute("src", "img/dorm.jpg");
-        imageTwo.setAttribute("width", "304");
-        imageTwo.setAttribute("height", "228");
-        imageTwo.setAttribute("alt", "dorm");
+
+
+        imageOne.onclick = function() {
+            var elements = outside.childNodes;
+            while (outside.firstChild) {
+                outside.removeChild(outside.firstChild);
+            }
+            content = document.createElement("div");
+            content.setAttribute('class', 'modal-content');
+            outside.style.display = "block";
+            outside.appendChild(content);
+
+        }
+
+        imageTwo.onclick = function() {
+            var elements = outside.childNodes;
+            while (outside.firstChild) {
+                outside.removeChild(outside.firstChild);
+            }
+            content = document.createElement("div");
+            content.setAttribute('class', 'modal-content');
+            outside.style.display = "block";
+            outside.appendChild(content);
+
+        }
+
         body.appendChild(imageOne);
         body.appendChild(imageTwo);
         content.appendChild(body);
