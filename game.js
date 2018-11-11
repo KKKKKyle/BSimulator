@@ -206,7 +206,8 @@ function update()
 //create welcome modal
 function welcomeModal() {
     var outside = document.getElementById("modal");
-    console.log(outside);
+    var inside = document.createElement("div");
+    inside.setAttribute("class", "modal");
     var content = document.createElement("div");
     content.setAttribute('class', 'modal-content');
     var close = document.createElement("span");
@@ -223,7 +224,8 @@ function welcomeModal() {
     title.innerHTML = "Welcome!";
     console.log(title);
     content.appendChild(title);
-    outside.appendChild(content);
+    inside.appendChild(content);
+    outside.appendChild(inside);
     console.log("test");
 
 }
@@ -231,7 +233,8 @@ welcomeModal();
 
 function scienceModal() {
     var outside = document.getElementById("modal");
-    console.log(outside);
+    var inside = document.createElement("div");
+    inside.setAttribute("class", "modal");
     var content = document.createElement("div");
     content.setAttribute('class', 'modal-content');
     var close = document.createElement("span");
@@ -249,7 +252,8 @@ function scienceModal() {
     title.innerHTML = "Welcome to ghost hall!";
     console.log(title);
     content.appendChild(title);
-    outside.appendChild(content);
+    inside.appendChild(content);
+    outside.appendChild(inside);
     console.log("test");
 
 }
