@@ -37,10 +37,13 @@ function diningModal() {
   //button and text
   var chooseButton = document.createElement("button");
   chooseButton.setAttribute('class', 'modal-button');
-  var t = document.createTextNode("Dining Hall");
+  var t = document.createElement("span");
+  t.innerHTML='Dining Hall';
+  t.setAttribute('class','text');
   chooseButton.appendChild(t);
   footer.appendChild(chooseButton);
   content.appendChild(footer);
+
   inside.appendChild(content);
   outside.appendChild(inside);
   console.log("test");
@@ -94,6 +97,8 @@ function diningModal() {
 
 
     imageOne.onclick = function() {
+      var inside = document.createElement("div");
+      inside.setAttribute("class", "modal");
       var elements = outside.childNodes;
       while (outside.firstChild) {
         outside.removeChild(outside.firstChild);
@@ -101,11 +106,14 @@ function diningModal() {
       content = document.createElement("div");
       content.setAttribute('class', 'modal-content');
       outside.style.display = "block";
-      outside.appendChild(content);
-
+      //outside.appendChild(content);
+      inside.appendChild(content);
+      outside.appendChild(inside);
     }
 
     imageTwo.onclick = function() {
+      var inside = document.createElement("div");
+      inside.setAttribute("class", "modal");
       var elements = outside.childNodes;
       while (outside.firstChild) {
         outside.removeChild(outside.firstChild);
@@ -113,8 +121,9 @@ function diningModal() {
       content = document.createElement("div");
       content.setAttribute('class', 'modal-content');
       outside.style.display = "block";
-      outside.appendChild(content);
-
+      //outside.appendChild(content);
+      inside.appendChild(content);
+      outside.appendChild(inside);
     }
 
     body.appendChild(imageOne);
@@ -126,6 +135,8 @@ function diningModal() {
     footer.setAttribute('class', 'modal-footer');
     content.appendChild(footer);
 
+    inside.appendChild(content);
+    outside.appendChild(inside);
   }
 
 

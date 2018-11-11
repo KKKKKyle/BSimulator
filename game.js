@@ -1,3 +1,4 @@
+
 //------------
 //System Vars
 //------------
@@ -44,7 +45,7 @@ function preloading() {
   }
 }
 
-//------------
+///------------
 //Key Handlers
 //------------
 function keyDownHandler(event) {
@@ -92,12 +93,13 @@ for (i = 1067; i < 1095; i++) {
   }
 }
 
-//College Library
-for (i = 1082; i<1136;i++) {
-	for (j= 189;j<229;j++) {
-		myMapX.set(i.toString() + " " + j.toString(), "College Library");
+//Lake
+for(i=1150;i<1227;i++) {
+	for(j=181;j<269;j++) {
+		myMapX.set(i.toString()+" "+j.toString(),"Lake");
 	}
 }
+
 
 //Starting Point
 charX = CHAR_START_X;
@@ -107,20 +109,20 @@ currX = IMAGE_START_X;
 currY = IMAGE_START_EAST_Y;
 var appear = false;
 var dining = false;
-
-function update() {
-  //Clear Canvas
-  //ctx.fillStyle = "red";
-  // var background = new Image();
-  // background.src = "https://welovebears.club/wp-content/uploads/2017/11/bears-climb-trees-1-300x300.jpg";
-  //
-  // // Make sure the image is loaded first otherwise nothing will draw.
-  // background.onload = function(){
-  // 	ctx.fillStyle = background;
+function update()
+{
+	//Clear Canvas
+	//ctx.fillStyle = "red";
+	// var background = new Image();
+	// background.src = "https://welovebears.club/wp-content/uploads/2017/11/bears-climb-trees-1-300x300.jpg";
+	//
+	// // Make sure the image is loaded first otherwise nothing will draw.
+	// background.onload = function(){
+	// 	ctx.fillStyle = background;
   //   //ctx.drawImage(background,0,0);
-  // }
+	// }
 
-  var img = document.getElementById("bg");
+	var img = document.getElementById("bg");
   var pat = ctx.createPattern(img, "no-repeat");
 
   ctx.fillStyle = pat;
@@ -129,35 +131,43 @@ function update() {
 
   var legal = true;
 
-  if (isMoving) {
-    if (facing == "N") {
-      if (!((charX < 604 && charY < 0) || ((charX > 600 && charX < 920) && charY < 50) ||
-          ((charX > 900 && charX < 1550) && charY < 120))) {
-        charY -= CHAR_SPEED;
-      }
-      currY = IMAGE_START_NORTH_Y;
-    } else if (facing == "E") {
-      if (!(charX > 1470)) {
-        charX += CHAR_SPEED;
-      }
-      currY = IMAGE_START_EAST_Y;
-    } else if (facing == "S") {
-      if (!(charY > 840 || (charX < 305 && charY > 480))) {
-        charY += CHAR_SPEED;
-      }
-      currY = IMAGE_START_SOUTH_Y;
-    } else if (facing == "W") {
-      if (!(charX < -15 || (charX < 305 && charY > 490))) {
-        charX -= CHAR_SPEED;
-      }
-      currY = IMAGE_START_WEST_Y;
-    }
+	if (isMoving)
+	{
+		if (facing == "N")
+		{
+			if(!((charX < 604 && charY < 0)||((charX > 600 && charX < 920) && charY < 50)
+																		 ||((charX > 900 && charX < 1550) && charY < 120))) {
+				charY -= CHAR_SPEED;
+			}
+			currY = IMAGE_START_NORTH_Y;
+		}
+		else if (facing == "E")
+		{
+			if(!(charX > 1470)){
+				charX += CHAR_SPEED;
+			}
+			currY = IMAGE_START_EAST_Y;
+		}
+		else if (facing == "S")
+		{
+			if(!(charY > 840 || (charX < 305 && charY > 480))){
+				charY += CHAR_SPEED;
+			}
+			currY = IMAGE_START_SOUTH_Y;
+		}
+		else if (facing == "W")
+		{
+			if(!(charX < -15 || (charX < 305 && charY > 490))){
+				charX -= CHAR_SPEED;
+			}
+			currY = IMAGE_START_WEST_Y;
+		}
 
-    currX += CHAR_WIDTH;
+		currX += CHAR_WIDTH;
 
-    var cd = (charX + 30).toString() + " " + (charY + 90).toString();
+    var cd = (charX+30).toString()+" "+(charY+90).toString();
 
-    if (myMapX.has(cd)) {
+		if (myMapX.has(cd)) {
       if (!appear) {
         CHAR_SPEED = 0;
         if (myMapX.get(cd) == "Science") {
@@ -169,24 +179,23 @@ function update() {
           } else {
             CHAR_SPEED = 5;
           }
-        } else if (myMapX.get(cd) == "College Library") {
-					console.log(true);
-					CHAR_SPEED = 5; //May change later
+        } else if(myMapX.get(cd)=="Lake") {
+					iceCreamModal();
 				}
         appear = true;
       }
     } else {
-      appear = false;
+        appear = false;
     }
 
-    if (currX >= SPRITE_WIDTH)
-      currX = 0;
-  }
+		if (currX >= SPRITE_WIDTH)
+			currX = 0;
+    }
 
-  //Draw Image
-  ctx.drawImage(charImage, currX, currY, CHAR_WIDTH, CHAR_HEIGHT,
-    charX, charY, CHAR_WIDTH, CHAR_HEIGHT);
-}
+		//Draw Image
+	  ctx.drawImage(charImage, currX, currY, CHAR_WIDTH, CHAR_HEIGHT,
+	    charX, charY, CHAR_WIDTH, CHAR_HEIGHT);
+	}
 
 //create welcome modal
 function welcomeModal() {
@@ -222,6 +231,8 @@ function scienceModal() {
   inside.setAttribute("class", "modal");
   var content = document.createElement("div");
   content.setAttribute('class', 'modal-content');
+
+	//close
   var close = document.createElement("span");
   close.setAttribute('class', 'close');
   close.innerHTML = "&times";
@@ -233,7 +244,7 @@ function scienceModal() {
   }
   content.appendChild(close);
 
-  var title = document.createElement("h1");
+	var title = document.createElement("h1");
   title.innerHTML = "Welcome to ghost hall!";
   console.log(title);
   content.appendChild(title);
