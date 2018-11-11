@@ -92,6 +92,13 @@ for (i = 1067; i < 1095; i++) {
   }
 }
 
+//College Library
+for (i = 1082; i<1136;i++) {
+	for (j= 189;j<229;j++) {
+		myMapX.set(i.toString() + " " + j.toString(), "College Library");
+	}
+}
+
 //Starting Point
 charX = CHAR_START_X;
 charY = CHAR_START_Y;
@@ -162,9 +169,11 @@ function update() {
           } else {
             CHAR_SPEED = 5;
           }
-        }
+        } else if (myMapX.get(cd) == "College Library") {
+					console.log(true);
+					CHAR_SPEED = 5; //May change later
+				}
         appear = true;
-
       }
     } else {
       appear = false;
