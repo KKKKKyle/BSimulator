@@ -99,6 +99,10 @@
     width: 304px;
     height: 228px;
     margin: 20px;
+ }
+.image:hover {
+    opacity:0.5;
+    
 }
 
 
