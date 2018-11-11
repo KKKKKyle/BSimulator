@@ -29,9 +29,6 @@ function setAssetReady() {
     this.ready = true;
 }
 
-welcomeModal();
-
-
 //Display Preloading
 ctx.fillRect(0, 0, stage.width, stage.height);
 ctx.fillStyle = "#000";
@@ -412,9 +409,12 @@ function dormModal() {
     img.setAttribute('class', 'image');
     var subtitle = document.createElement("h4");
     subtitle.innerHTML = "(click on the close button to continue)";
+    var credit = document.createElement("h5");
+    credit.innerHTML = "Cr. to Colton Wickland from Milk-Chugging Teens";
     content.appendChild(img);
     content.appendChild(title);
     content.appendChild(subtitle);
+    content.appendChild(credit);
     inside.appendChild(content);
     outside.appendChild(inside);
 }
@@ -434,9 +434,12 @@ function dormModal2() {
     var img = document.createElement("img");
     img.src = "img/dorm2.png";
     img.setAttribute('class', 'image');
+    var credit = document.createElement("h5");
+    credit.innerHTML = "Cr. to Colton Wickland from Milk-Chugging Teens";
     img.onclick = function() { selectDorm(event, img); };
     content.appendChild(subtitle);
     content.appendChild(img);
+    content.appendChild(credit);
     inside.appendChild(content);
     outside.appendChild(inside);
 }
@@ -463,7 +466,7 @@ function soarModal() {
     title.innerHTML = "Now it's SOAR! You need to go to the College Libaray to choose your courses!";
     content.appendChild(title);
     var subtitle = document.createElement("h5");
-    subtitle.innerHTML = "Cr. to Alyssa Stammerjohan from Milk-Chugging Teans";
+    subtitle.innerHTML = "Cr. to Alyssa Stammerjohan from Milk-Chugging Teens";
     var img = document.createElement("img");
     img.src = "img/soar.png";
     img.setAttribute('class', 'image');
@@ -498,6 +501,43 @@ function soarModal2() {
     var table = tableCreate();
     content.appendChild(title);
     content.appendChild(table);
+    inside.appendChild(content);
+    outside.appendChild(inside);
+}
+
+//create party model
+function partyModal() {
+    var outside = document.getElementById("modal");
+    var inside = document.createElement("div");
+    inside.setAttribute("class", "modal");
+    var content = document.createElement("div");
+    content.setAttribute('class', 'modal-content');
+    var close = document.createElement("span");
+    close.setAttribute('class', 'close');
+    close.innerHTML = "&times";
+    close.onclick = function() {
+        while (outside.firstChild) {
+            outside.removeChild(outside.firstChild);
+          }
+        CHAR_SPEED = 5;
+      }
+    content.appendChild(close);
+    var title = document.createElement("h1");
+    title.innerHTML = "No matter Game Day or weekend, it's party time!";
+    var activity = document.createElement("h3");
+    activity.innerHTML = "Activitiy: <del>Beer</del>Water Pong";
+    var img = document.createElement("img");
+    img.src = "img/party.jpg";
+    img.setAttribute('class', 'image');
+    var subtitle = document.createElement("h4");
+    subtitle.innerHTML = "Does the party have any milk?";
+    var credit = document.createElement("h5");
+    credit.innerHTML = "Cr. to Jacob Kenyon from Milk-Chugging Teens";
+    content.appendChild(title);
+    content.appendChild(activity);
+    content.appendChild(image);
+    content.appendChild(subtitle);
+    content.appendChild(credit);
     inside.appendChild(content);
     outside.appendChild(inside);
 }
