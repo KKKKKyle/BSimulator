@@ -1,31 +1,46 @@
 /* The Modal (background) */
 .modal {
-    display: block; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: block;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
-.modal-content {   
+.modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
+    /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #FFFFFF;
-    width: 80%; /* Could be more or less, depending on screen size */
-     position: relative;
-     -webkit-animation-name: animatetop;
+    width: 60%;
+    /* Could be more or less, depending on screen size */
+    position: relative;
+    -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
 }
 
+#dinner-content{
+   cursor:zoom-in;
+   background-color: #fefefe;
+    margin: 15% auto;
+    }
 
 .modal-button {
     position: relative;
@@ -45,33 +60,71 @@
 
 }
 
-.modal-button:hover{
+
+.modal-button:hover {
     background-color: black;
     color: white;
+
+}
+
+.text {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.text:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+
+}
+
+.modal-button:hover .text {
+    padding-right: 25px;
+}
+
+.modal-button :hover .text:after {
+    opacity: 1;
+    right: 0;
 }
 
 
-.image{
-   width:304px;
-   height:228px;
-   margin:10px;
+
+.image {
+    width: 304px;
+    height: 228px;
+    margin: 20px;
 }
 
-.image2{
-    width:400;
-    height: 300px;
-    cursor:zoom-in
-}
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
 }
 
 @keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
 }
 
 
@@ -98,12 +151,22 @@
     color: white;
 }
 
-.modal-body {padding: 2px 16px;}
-
-.modal-footer {
-    padding: 2px 16px;
+#dinner-header {
     background-color: #660000;
     color: white;
 }
 
+.modal-body {
+    padding: 2px 16px;
+}
 
+.modal-footer {
+    padding: 2px 20px;
+    background-color: #660000;
+    color: white;
+}
+
+#dinner-footer{
+    background-color: white;
+   
+}

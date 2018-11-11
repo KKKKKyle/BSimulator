@@ -4,7 +4,7 @@ function diningModal() {
 
     var content = document.createElement("div");
     content.setAttribute('class', 'modal-content');
-    
+
 
     //close
     var close = document.createElement("span");
@@ -23,7 +23,8 @@ function diningModal() {
     header.setAttribute('class', 'modal-header');
     //text
     var title = document.createElement("h1");
-    title.innerHTML = "IT'S LUNCH TIME!"
+    title.innerHTML = "IT'S LUNCH TIME!";
+
     header.appendChild(title);
     content.appendChild(header);
 
@@ -33,7 +34,10 @@ function diningModal() {
     //button and text
     var chooseButton = document.createElement("button");
     chooseButton.setAttribute('class', 'modal-button');
-    var t = document.createTextNode("Dining Hall");
+    var t = document.createElement("span");
+    t.innerHTML="Dining Hall";
+    t.setAttribute('class','text');
+
     chooseButton.appendChild(t);
     footer.appendChild(chooseButton);
     content.appendChild(footer);
