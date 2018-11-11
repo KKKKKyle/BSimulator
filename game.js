@@ -87,12 +87,32 @@ function keyUpHandler(event)
 	}
 }
 
+//Preolad HashMap of all coordinates
+var myMapX = new Map();
+//var myMapY = new Map();
+var i,j;
+//Science Hall
+for (i=1107;i<1133;i++) {
+  for (j=258;j<301;j++) {
+    myMapX.set(i.toString()+" "+j.toString(),"Science");
+  }
+}
+
+//Rheta's Market
+for (i=1067;i<1095;i++) {
+  for (j=422;j<442;j++) {
+    myMapX.set(i.toString()+" "+j.toString(),"Rhetas");
+  }
+}
+
+//Starting Point
 charX = CHAR_START_X;
 charY = CHAR_START_Y;
 
 currX = IMAGE_START_X;
 currY = IMAGE_START_EAST_Y;
-
+var appear = false;
+var dining = false;
 function update()
 {
 	//Clear Canvas
@@ -152,9 +172,31 @@ function update()
 
 		currX += CHAR_WIDTH;
 
+    var cd = (charX+30).toString()+" "+(charY+90).toString();
+
+    if (myMapX.has(cd)) {
+      if (!appear) {
+        CHAR_SPEED = 0;
+        if (myMapX.get(cd)=="Science") {
+          scienceModal();
+        } else if (myMapX.get(cd)=="Rhetas") {
+          if (!dining) {
+            diningModal();
+            dining = true;
+          } else {
+            CHAR_SPEED = 5;
+          }
+        }
+        appear = true;
+
+      }
+    } else {
+        appear = false;
+    }
+
 		if (currX >= SPRITE_WIDTH)
 			currX = 0;
-}
+    }
 
 	//Draw Image
 	ctx.drawImage(charImage,currX,currY,CHAR_WIDTH,CHAR_HEIGHT,
@@ -171,7 +213,9 @@ function welcomeModal() {
     close.setAttribute('class', 'close');
     close.innerHTML = "&times";
     close.onclick = function() {
-        outside.style.display = "none";
+        while(outside.firstChild){
+          outside.removeChild(outside.firstChild);
+        }
     }
     content.appendChild(close);
 
@@ -184,3 +228,28 @@ function welcomeModal() {
 
 }
 welcomeModal();
+
+function scienceModal() {
+    var outside = document.getElementById("modal");
+    console.log(outside);
+    var content = document.createElement("div");
+    content.setAttribute('class', 'modal-content');
+    var close = document.createElement("span");
+    close.setAttribute('class', 'close');
+    close.innerHTML = "&times";
+    close.onclick = function() {
+        while(outside.firstChild){
+          outside.removeChild(outside.firstChild);
+          CHAR_SPEED = 5;
+        }
+    }
+    content.appendChild(close);
+
+    var title = document.createElement("h1");
+    title.innerHTML = "Welcome to ghost hall!";
+    console.log(title);
+    content.appendChild(title);
+    outside.appendChild(content);
+    console.log("test");
+
+}
