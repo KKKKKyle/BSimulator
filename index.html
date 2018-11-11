@@ -9,8 +9,19 @@
 </head>
 
 <body>
+  <div id="SplashScreen">
+    <center><img src="img/titlePage.png" id="tp" width="800" height="600"></center>
+    <center><button id="StartButton">Click here to start!</button></center>
+  </div>
+  <script>
+    $("#StartButton").click(function() {
+      $("#SplashScreen").hide();
+      $("#gameCanvas").show();
+      welcomeModal();
+    });
+  </script>
     <img src="img/campus_bg.png" style="display: none;" id="bg" width="100" height="100">
-    <canvas id="gameCanvas">
+    <canvas id="gameCanvas" style="display: none;">
         Please upgrade your browser to support HTML5.<br />
         One recommendation is to install the latest Chrome or Firefox.
     </canvas>
