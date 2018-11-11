@@ -752,7 +752,7 @@ function ianModal() {
     var title = document.createElement("h1");
     title.innerHTML = "Ian's Pizza";
     var frame = document.createElement("iframe");
-    frame.src = "https://www.google.com/maps/embed?pb=!4v1541948968387!6m8!1m7!1sCAoSLEFGMVFpcE9HbTM0NGUxcmlUcUFOVktNZXlyTFpiVnJXZ3JrcFA4WWFpNjk4!2m2!1d43.0738511!2d-89.40172849999999!3f20.071811335170274!4f0!5f0.7820865974627469";
+    frame.src = "https://www.google.com/maps/embed?pb=!4v1541959193698!6m8!1m7!1sCAoSLEFGMVFpcE1TS05RbzQ1eFZYVHJ2bzdMYlBaYUhEeEJvVXlTN0p6aWNFa21U!2m2!1d43.072929570428!2d-89.39565281989331!3f290.5757159629932!4f0!5f0.7820865974627469";
     frame.width = 600;
     frame.height = 450;
     content.appendChild(title);
@@ -827,7 +827,7 @@ function partyModal() {
         }
         var list = document.getElementById("taskList");
         var task = document.createElement("p");
-        task.innerHTML = "TASK: Underdevelopment. Feel free to explore the map! ";
+        task.innerHTML = "Underdevelopment. Feel free to explore the map! ";
         list.appendChild(task);
         CHAR_SPEED = 5;
         finishLunch = true;
