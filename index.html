@@ -1,31 +1,37 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="css/index.css">
-<title>Badger Simulator</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<title>Badger Simulator</title>
 </head>
+
 <body>
 	<img src="img/campus_bg.png" style="display: none;" id="bg" width="100" height="100">
-	<canvas id="gameCanvas">
-        Please upgrade your browser to support HTML5.<br/>
-        One recommendation is to install the latest Chrome or Firefox.
-    </canvas>
-    <div id="modal" class="modal"></div>
-	<div onclick="showCoords(event)"><p id="demo"></p></div>
-    <script type="text/javascript" src="constants.js"></script>
-    <script type="text/javascript" src="game.js"></script>
-    <script type="text/javascript" src="dining.js"></script>
+	<canvas id="gameCanvas" onclick="showCoords(event)">
+		<p id="demo"></p>
+		Please upgrade your browser to support HTML5.<br />
+		One recommendation is to install the latest Chrome or Firefox.
+	</canvas>
+	<div id="modal">
+
+	</div>
+	<div onclick="showCoords(event)">
+		<p id="demo"></p>
+	</div>
+	<script type="text/javascript" src="constants.js"></script>
+	<script type="text/javascript" src="game.js"></script>
+	<script type="text/javascript" src="dining.js"></script>
 	<script>
-	function showCoords(event) {
-    var cX = event.clientX;
-    var sX = event.screenX;
-    var cY = event.clientY;
-    var sY = event.screenY;
-    var coords1 = "client - X: " + cX + ", Y coords: " + cY;
-    var coords2 = "screen - X: " + sX + ", Y coords: " + sY;
-    document.getElementById("demo").innerHTML = coords1 + "<br>" + coords2;
-}
+		function showCoords(event) {
+			var cX = event.offsetX;
+			var cY = event.offsetY;
+			var coords1 = "offset - X: " + cX + ", Y coords: " + cY;
+			document.getElementById("demo").innerHTML = coords1;
+			console.log(coords1);
+		}
 	</script>
 </body>
+
 </html>
