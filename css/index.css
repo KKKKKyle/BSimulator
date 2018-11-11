@@ -1,46 +1,31 @@
 /* The Modal (background) */
 .modal {
-    display: block;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
-    /* 15% from the top and centered */
+    margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
-    border: 1px solid #FFFFFF;
-    width: 60%;
-    /* Could be more or less, depending on screen size */
-    position: relative;
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
 }
 
 #dinner-content{
    cursor:zoom-in;
    background-color: #fefefe;
     margin: 15% auto;
-    }
+}
 
 .modal-button {
     position: relative;
@@ -93,18 +78,15 @@
     right: 0;
 }
 
-
-
-.image {
+/* .image {
     width: 304px;
     height: 228px;
     margin: 20px;
  }
 .image:hover {
     opacity:0.5;
-    
-}
 
+} */
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
@@ -134,7 +116,7 @@
 
 /*close button*/
 .close {
-    color: white;
+    color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -142,7 +124,7 @@
 
 .close:hover,
 .close:focus {
-    color: #000;
+    color: black;
     text-decoration: none;
     cursor: pointer;
 }
@@ -160,6 +142,12 @@
     color: white;
 }
 
+#lake-header {
+    background-color: #C4FEF8;
+    font-family: "Courier New", Courier, monospace;
+    color: white;
+}
+
 .modal-body {
     padding: 2px 16px;
 }
@@ -172,5 +160,16 @@
 
 #dinner-footer{
     background-color: white;
-   
+}
+
+#lake-footer{
+    background-color: white;
+}
+.image{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.labels{
+    position: center;
 }
