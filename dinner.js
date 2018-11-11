@@ -1,7 +1,8 @@
 //dining modal
 function dinnerModal() {
     var outside = document.getElementById("modal");
-
+    var inside = document.createElement("div");
+    inside.setAttribute("class", "modal");
     var content = document.createElement("div");
     content.setAttribute('class', 'modal-content');
 
@@ -12,7 +13,10 @@ function dinnerModal() {
     close.innerHTML = "&times";
 
     close.onclick = function() {
-        outside.style.display = "none";
+      while (outside.firstChild) {
+        outside.removeChild(outside.firstChild);
+      }
+      CHAR_SPEED = 5;
     }
 
     content.appendChild(close);
@@ -50,6 +54,8 @@ function dinnerModal() {
 
 
     imageOne.onclick = function() {
+      var inside = document.createElement("div");
+      inside.setAttribute("class", "modal");
         var elements = outside.childNodes;
         while (outside.firstChild) {
             outside.removeChild(outside.firstChild);
@@ -57,11 +63,14 @@ function dinnerModal() {
         content = document.createElement("div");
         content.setAttribute('class', 'modal-content');
         outside.style.display = "block";
-        outside.appendChild(content);
+        inside.appendChild(content);
+        outside.appendChild(inside);
 
     }
 
     imageTwo.onclick = function() {
+      var inside = document.createElement("div");
+      inside.setAttribute("class", "modal");
         var elements = outside.childNodes;
         while (outside.firstChild) {
             outside.removeChild(outside.firstChild);
@@ -69,16 +78,16 @@ function dinnerModal() {
         content = document.createElement("div");
         content.setAttribute('class', 'modal-content');
         outside.style.display = "block";
-        outside.appendChild(content);
+        inside.appendChild(content);
+        outside.appendChild(inside);
 
     }
 
     footer.appendChild(imageOne);
     footer.appendChild(imageTwo);
     content.appendChild(footer);
-    outside.appendChild(content);
+    inside.appendChild(content);
+    outside.appendChild(inside);
 
 }
-
-
-dinnerModal();
+// dinnerModal();
