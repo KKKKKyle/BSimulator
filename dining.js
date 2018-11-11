@@ -38,8 +38,8 @@ function diningModal() {
   var chooseButton = document.createElement("button");
   chooseButton.setAttribute('class', 'modal-button');
   var t = document.createElement("span");
-  t.innerHTML='Dining Hall';
-  t.setAttribute('class','text');
+  t.innerHTML = 'Dining Hall';
+  t.setAttribute('class', 'text');
   chooseButton.appendChild(t);
   footer.appendChild(chooseButton);
   content.appendChild(footer);
@@ -138,8 +138,4 @@ function diningModal() {
     inside.appendChild(content);
     outside.appendChild(inside);
   }
-
-
-
 }
-//diningModal();

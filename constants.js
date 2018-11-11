@@ -10,8 +10,8 @@ var PATH_CHAR = "img/spritesheet3.png";
 
 var CHAR_WIDTH = 72,
   CHAR_HEIGHT = 96,
-  CHAR_START_X = 1083,
-  CHAR_START_Y = 574,
+  CHAR_START_X = 200,
+  CHAR_START_Y = 200,
   CHAR_SPEED = 5,
   IMAGE_START_X = 0,
   IMAGE_START_NORTH_Y = 0,
