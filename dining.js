@@ -34,7 +34,9 @@ function diningModal() {
     //button and text
     var chooseButton = document.createElement("button");
     chooseButton.setAttribute('class', 'modal-button');
-    var t = document.createTextNode("Dining Hall");
+    var t = document.createElement("span");
+    t.innerHTML="Dining Hall";
+    t.setAttribute('class','text');
     chooseButton.appendChild(t);
     footer.appendChild(chooseButton);
     content.appendChild(footer);
