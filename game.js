@@ -38,6 +38,37 @@ ctx.fillText(TEXT_PRELOADING, TEXT_PRELOADING_X, TEXT_PRELOADING_Y);
 var preloader = setInterval(preloading, TIME_PER_FRAME);
 
 var gameloop, facing, currX, currY, charX, charY, isMoving;
+var touchX, touchY;
+
+// class of buttons on screen
+function btn(width, height, color, x, y) {
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;
+    this.update = function() {
+        ctx.fillStyle = color;
+        ctx.fillRect(charX + x - 15, charY + y -7, this.width, this.height);
+    }
+    this.clicked = function() {
+        console.log(touchX);
+        console.log(touchY);
+        console.log("char" + charX);
+        console.log("char" + charY);
+        var myleft = charX + x - 15;
+        var myright = charX + x - 15 + (this.width);
+        var mytop = charY + y -7;
+        var mybottom = charY + y -7 + (this.height);
+        var clicked = true;
+        if ((mybottom < touchY) || (mytop > touchY) || (myright < touchX) || (myleft > touchX)) {
+            clicked = false;
+        }
+        return clicked;
+    }
+}
+
+// touch
+var upBtn, downBtn, leftBtn, rightBtn;
 
 function preloading() {
     if (charImage.ready) {
@@ -46,10 +77,62 @@ function preloading() {
         //Initialise game
         facing = "S"; //N = North, E = East, S = South, W = West
         isMoving = false;
+        upBtn = new btn(30, 30, "rgba(197, 5, 12, .7)", CHAR_WIDTH/2, 0);
+        leftBtn = new btn(30, 30, "rgba(197, 5, 12, .7)", 0, CHAR_HEIGHT/2);
+        downBtn = new btn(30, 30, "rgba(197, 5, 12, .7)", CHAR_WIDTH/2, CHAR_HEIGHT);
+        rightBtn = new btn(30, 30, "rgba(197, 5, 12, .7)", CHAR_WIDTH, CHAR_HEIGHT/2);
+
 
         gameloop = setInterval(update, TIME_PER_FRAME);
         document.addEventListener("keydown", keyDownHandler, false);
         document.addEventListener("keyup", keyUpHandler, false);
+
+        window.addEventListener('mousedown', function(e) {
+            touchX = e.pageX;
+            touchY = e.pageY;
+            if (upBtn.clicked()) {
+                facing = "N";
+                isMoving = true;
+            } else if (downBtn.clicked()) {
+                facing = "S";
+                isMoving = true;
+
+            } else if (leftBtn.clicked()) {
+                facing = "W";
+                isMoving = true;
+            } else if (rightBtn.clicked()) {
+                facing = "E";
+                isMoving = true;
+            }
+        })
+        window.addEventListener('mouseup', function(e) {
+            touchX = false;
+            touchY = false;
+            isMoving = false;
+        })
+        window.addEventListener('touchstart', function(e) {
+            touchX = e.pageX;
+            touchY = e.pageY;
+            if (upBtn.clicked()) {
+                facing = "N";
+                isMoving = true;
+            } else if (downBtn.clicked()) {
+                facing = "S";
+                isMoving = true;
+
+            } else if (leftBtn.clicked()) {
+                facing = "W";
+                isMoving = true;
+            } else if (rightBtn.clicked()) {
+                facing = "E";
+                isMoving = true;
+            }
+        })
+        window.addEventListener('touchend', function(e) {
+            touchX = false;
+            touchY = false;
+            isMoving = false;
+        })
     }
 }
 
@@ -99,18 +182,6 @@ var finishEdu = false;
 var dining2 = false;
 
 function update() {
-    //Clear Canvas
-    //ctx.fillStyle = "red";
-    // var background = new Image();
-    // background.src = "https://welovebears.club/wp-content/uploads/2017/11/bears-climb-trees-1-300x300.jpg";
-    //
-    // // Make sure the image is loaded first otherwise nothing will draw.
-    // background.onload = function(){
-    // 	ctx.fillStyle = background;
-    //   //ctx.drawImage(background,0,0);
-    // }
-
-    console.log(selectedDorm);
     if (selectedDorm == true) {
 
         //clean modal
@@ -247,6 +318,10 @@ function update() {
     //Draw Image
     ctx.drawImage(charImage, currX, currY, CHAR_WIDTH, CHAR_HEIGHT,
         charX, charY, CHAR_WIDTH, CHAR_HEIGHT);
+    upBtn.update();
+    downBtn.update();
+    leftBtn.update();
+    rightBtn.update();
 }
 //HELPER FUNCTIONS
 function tableCreate() {

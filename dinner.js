@@ -91,13 +91,13 @@ function dinnerModal() {
     body.setAttribute('class', 'modal-body');
     var titleone = document.createElement("h3");
     titleone.innerHTML = "Best Pizza: Ian's pizza";
-    var imageOne = document.createElement("IMG");
+    var imageOne = document.createElement("img");
     imageOne.setAttribute("class", "image");
-    imageOne.setAttribute("src", "img/ian.jpg");
+    imageOne.setAttribute("src", "img/ian.JPG");
 
     var titletwo = document.createElement("h3");
     titletwo.innerHTML = "Meme Star: QQ Express";
-    var imageTwo = document.createElement("IMG");
+    var imageTwo = document.createElement("img");
     imageTwo.setAttribute("class", "image");
     imageTwo.setAttribute("src", "img/qq.jpg");
     body.appendChild(subtitle);
